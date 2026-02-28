@@ -57,3 +57,7 @@ WebDriver driver;
 	       driver.quit();
 	}
 }
+1 scenarios (1 passed)
+6 steps (4 passed, 1 skipped, 1 failed)
+0m 10.940s
+
