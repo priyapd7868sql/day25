@@ -1,0 +1,59 @@
+Feature: Simple input field validation
+Scenario: Verify entered text is displayed below the text field
+Given user opens the simple input page
+When user enters "Hello" in the text field
+And user clicks on enter button
+Then the entered text should be displayed below the text field
+
+
+package Qaprac;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class Qapractice {
+WebDriver driver;
+	
+	@Before
+	public void setup() {
+		driver = new ChromeDriver();
+	}
+	@Given("user opens the simple input page")
+	public void user_opens_the_simple_input_page() {
+		driver.get(" https://www.qa-practice.com/elements/input/simple");
+	    
+	}
+
+	@When("user enters {string} in the text field")
+	public void user_enters_in_the_text_field(String string) {
+		driver.findElement(By.id("id_text_string")).sendKeys(string);
+	   
+	}
+
+	@When("user clicks on enter button")
+	public void user_clicks_on_enter_button() {
+		driver.findElement(By.id("id_text_string")).sendKeys(Keys.ENTER);
+	   
+	}
+
+	@Then("the entered text should be displayed below the text field")
+	public void the_entered_text_should_be_displayed_below_the_text_field() {
+		 String actualText =driver.findElement(By.id("result-text")).getText();
+
+	        Assert.assertEquals(actualText, "Hello");
+	    
+	}
+	 @After
+	    public void tearDown() {
+	       driver.quit();
+	}
+}
